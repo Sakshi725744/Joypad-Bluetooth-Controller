@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "554124407478",
+    "firebase_url": "https://easecart-fcc99.firebaseio.com",
+    "project_id": "easecart-fcc99",
+    "storage_bucket": "easecart-fcc99.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:554124407478:android:a100e0a32258715e5d2c17",
+        "android_client_info": {
+          "package_name": "com.example.easycartfinal"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "554124407478-m1pugcj0fgkbl27u09u171rutakld9eo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD1CnwshR8HiFLBPH5HT30wrRZ9ZOXLuig"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "554124407478-m1pugcj0fgkbl27u09u171rutakld9eo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
