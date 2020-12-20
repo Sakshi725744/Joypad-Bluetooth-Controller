@@ -7,8 +7,9 @@
 - [X] Joypad Controller
 - [X] Bluetooth Serial Communiication
 <br>
+
 ## Guidelines:<br>
-App:<br>
+### App:<br>
 <ul>
   <li> Install app via apk </li>
   <li> Login using mobile number and otp</li>
@@ -18,7 +19,8 @@ App:<br>
   <li> Use padbutton view or joypadview to test </li>
   </ul>
   <br>
-Device:<br>
+  
+### Device:<br>
 <ul>
   <li> Ardiuno and HC05 is needed for testing </li>
   <li> Run ardiuno code in IDE </li>
