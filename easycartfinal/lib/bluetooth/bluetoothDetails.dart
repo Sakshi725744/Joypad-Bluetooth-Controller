@@ -24,8 +24,6 @@ class _MainPage extends State<MainPage> {
 
   String _address = "...";
   String _name = "...";
-  bool receive=false;
-  bool connected = false;
   Timer _discoverableTimeoutTimer;
   int _discoverableTimeoutSecondsLeft = 0;
 

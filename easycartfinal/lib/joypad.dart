@@ -25,7 +25,7 @@ class _joypadState extends State<joypad> {
   bool get isConnected => connection != null && connection.isConnected;
 
   bool isDisconnecting = false;
-  bool joypadview = false;
+  bool joypadview = false; //for padbutton or joypad
 
   @override
   void initState() {
@@ -151,7 +151,7 @@ class _joypadState extends State<joypad> {
         print(e.toString());
       }
     } else {
-      BluetoothConnection.toAddress(widget.server.address).then((_connection) {
+      BluetoothConnection.toAddress(widget.server.address).then((_connection) {//trying to reconnect
         print('Connected to the device');
         connection = _connection;
         setState(() {
@@ -177,7 +177,7 @@ class _joypadState extends State<joypad> {
         print(e.toString());
       }
     } else {
-      BluetoothConnection.toAddress(widget.server.address).then((_connection) {
+      BluetoothConnection.toAddress(widget.server.address).then((_connection) {//trying to reconnect
         print('Connected to the device');
         connection = _connection;
         setState(() {

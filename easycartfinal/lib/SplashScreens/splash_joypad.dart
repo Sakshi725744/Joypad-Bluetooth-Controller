@@ -5,7 +5,7 @@ class splash_joypad extends StatefulWidget {
   @override
   _splash_joypadState createState() => _splash_joypadState();
 }
-
+//splash screen with circularprogressindicatior for intuitive connection check
 class _splash_joypadState extends State<splash_joypad> {
   bool a = false;
   route() {
