@@ -17,11 +17,9 @@ class _LoginPageState extends State<LoginPage> {
   final formKey = new GlobalKey<FormState>();
   StreamController<ErrorAnimationType> errorController;
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
-  bool hasError = false;
   String phoneNo, verificationId, smsCode;
-  bool inprogress = false;
-  bool codeSent = false;
-  bool change_num = false;
+  bool inprogress = false; //to showcase loading state
+  bool codeSent = false; //manage state until OTP sent
   showAlertDialog(BuildContext context, String error,String title) {
 
     // set up the button

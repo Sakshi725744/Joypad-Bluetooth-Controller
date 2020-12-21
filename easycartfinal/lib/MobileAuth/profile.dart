@@ -14,7 +14,6 @@ class profile extends StatefulWidget {
 class _profileState extends State<profile> {
   final formKey = new GlobalKey<FormState>();
   bool hasError = false;
-  String phoneNo, verificationId, smsCode;
   bool male = true;
   bool codeSent = true;
   var dbref = FirebaseFirestore.instance.collection("users");
@@ -144,11 +143,7 @@ class _profileState extends State<profile> {
                                         fontSize: h*0.032,
                                         fontWeight: FontWeight.normal)),
                                 //decoration: InputDecoration(hintText: 'Enter phone number'),
-                                onChanged: (val) {
-                                  setState(() {
-                                    this.phoneNo = val;
-                                  });
-                                },
+
                               ),
                             ),
                           )
@@ -212,11 +207,7 @@ class _profileState extends State<profile> {
                                         fontSize: h*0.032,
                                         fontWeight: FontWeight.normal)),
                                 //decoration: InputDecoration(hintText: 'Enter phone number'),
-                                onChanged: (val) {
-                                  setState(() {
-                                    this.phoneNo = val;
-                                  });
-                                },
+
                               ),
                             ),
                           )

@@ -46,7 +46,7 @@ class _joypadState extends State<joypad> {
 
   @override
   void dispose() {
-    
+    // Avoid memory leak (`setState` after dispose) and disconnect
     if (isConnected) {
       isDisconnecting = true;
       connection.dispose();

@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:easycartfinal/MobileAuth/Authservice.dart';
 import 'package:easycartfinal/easycart_heading.dart';
+import 'package:easycartfinal/receive.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
@@ -23,7 +24,8 @@ class _MainPage extends State<MainPage> {
 
   String _address = "...";
   String _name = "...";
-  bool connected=false;
+  bool receive=false;
+  bool connected = false;
   Timer _discoverableTimeoutTimer;
   int _discoverableTimeoutSecondsLeft = 0;
 
@@ -106,8 +108,8 @@ class _MainPage extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-    double h = SizeConfig.safeBlockVertical*100;
-    double w = SizeConfig.safeBlockHorizontal*100 ;
+    double h = SizeConfig.safeBlockVertical * 100;
+    double w = SizeConfig.safeBlockHorizontal * 100;
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: Color(0xfff7f7f7),
@@ -131,7 +133,7 @@ class _MainPage extends State<MainPage> {
                       child: IconButton(
                         icon: Icon(
                           Icons.arrow_back,
-                          size: h*0.035,
+                          size: h * 0.035,
                         ),
                         color: Colors.white,
                         onPressed: () {
@@ -153,24 +155,24 @@ class _MainPage extends State<MainPage> {
                                 fit: BoxFit.cover,
                               ),
                       ),
-                      SizedBox(height: h*0.01),
+                      SizedBox(height: h * 0.01),
                       Text(
                         name,
                         style: GoogleFonts.galdeano(
                             textStyle: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
-                          fontSize: h*0.032,
+                          fontSize: h * 0.032,
                         )),
                       ),
-                      SizedBox(height: h*0.005),
+                      SizedBox(height: h * 0.005),
                       Text(
                         age,
                         style: GoogleFonts.galdeano(
                             textStyle: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
-                          fontSize: h*0.032,
+                          fontSize: h * 0.032,
                         )),
                       )
                     ])),
@@ -187,14 +189,14 @@ class _MainPage extends State<MainPage> {
                   leading: Icon(
                     Icons.edit,
                     color: Colors.black,
-                    size: h*0.032,
+                    size: h * 0.032,
                   ),
                   title: Text(
                     'Edit Profile',
                     style: GoogleFonts.galdeano(
                         textStyle: TextStyle(
                       color: Colors.black,
-                      fontSize: h*0.032,
+                      fontSize: h * 0.032,
                     )),
                   ),
                   onTap: () {
@@ -207,14 +209,14 @@ class _MainPage extends State<MainPage> {
                   leading: Icon(
                     Icons.settings,
                     color: Colors.black,
-                    size: h*0.032,
+                    size: h * 0.032,
                   ),
                   title: Text(
                     'Device Settings',
                     style: GoogleFonts.galdeano(
                         textStyle: TextStyle(
                       color: Colors.black,
-                      fontSize: h*0.032,
+                      fontSize: h * 0.032,
                     )),
                   ),
                   onTap: () {
@@ -233,14 +235,14 @@ class _MainPage extends State<MainPage> {
               leading: Icon(
                 Icons.logout,
                 color: Colors.black,
-                size: h*0.032,
+                size: h * 0.032,
               ),
               title: Text(
                 'Logout',
                 style: GoogleFonts.galdeano(
                     textStyle: TextStyle(
                   color: Colors.black,
-                  fontSize: h*0.032,
+                  fontSize: h * 0.032,
                 )),
               ),
               onTap: () {
@@ -251,10 +253,11 @@ class _MainPage extends State<MainPage> {
         ),
       ),
       appBar: AppBar(
-        title: Text('Bluetooth Settings', style: GoogleFonts.galdeano(
-            textStyle: TextStyle(
+        title: Text('Bluetooth Settings',
+            style: GoogleFonts.galdeano(
+                textStyle: TextStyle(
               color: Colors.white,
-              fontSize: h*0.032,
+              fontSize: h * 0.032,
             ))),
         backgroundColor: Color(0xffF20B0B),
       ),
@@ -266,10 +269,11 @@ class _MainPage extends State<MainPage> {
                     vertical: h * 0.1, horizontal: w * 0.1),
                 child: heading()),
             SwitchListTile(
-              title: Text('Bluetooth State', style: GoogleFonts.galdeano(
-                  textStyle: TextStyle(
+              title: Text('Bluetooth State',
+                  style: GoogleFonts.galdeano(
+                      textStyle: TextStyle(
                     color: Color(0xff747292),
-                    fontSize: h*0.032,
+                    fontSize: h * 0.032,
                   ))),
               subtitle: Text(_bluetoothState.toString()),
               value: _bluetoothState.isEnabled,
@@ -288,116 +292,123 @@ class _MainPage extends State<MainPage> {
                 });
               },
             ),
-
             ListTile(
-              title: Text('Local adapter address',style: GoogleFonts.galdeano(
-                  textStyle: TextStyle(
+              title: Text('Local adapter address',
+                  style: GoogleFonts.galdeano(
+                      textStyle: TextStyle(
                     color: Color(0xff747292),
-                    fontSize: h*0.032,
+                    fontSize: h * 0.032,
                   ))),
               subtitle: Text(_address),
             ),
             ListTile(
-              title: Text('Local adapter name',style: GoogleFonts.galdeano(
-                  textStyle: TextStyle(
+              title: Text('Local adapter name',
+                  style: GoogleFonts.galdeano(
+                      textStyle: TextStyle(
                     color: Color(0xff747292),
-                    fontSize: h*0.032,
+                    fontSize: h * 0.032,
                   ))),
               subtitle: Text(_name),
               onLongPress: null,
             ),
-            SizedBox(height: h*0.08,),
+            SizedBox(
+              height: h * 0.08,
+            ),
+            
             Container(
-              width: h*(0.38),
+              width: h * (0.38),
               child: RaisedButton(
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(18.0),
                   ),
                   elevation: 7,
-                  color:Color(0xffF20B0B) ,
-                  child: Text('Find a chair nearby',style: GoogleFonts.galdeano(
-                      textStyle: TextStyle(
+                  color: Color(0xffF20B0B),
+                  child: Text('Find a chair nearby',
+                      style: GoogleFonts.galdeano(
+                          textStyle: TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
-                        fontSize: h*0.029,
+                        fontSize: h * 0.029,
                       ))),
                   onPressed: () async {
-                    if(_bluetoothState.isEnabled){
+                    if (_bluetoothState.isEnabled) {
+                      final BluetoothDevice selectedDevice =
+                          await Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return DiscoveryPage();
+                          },
+                        ),
+                      );
+
+                      if (selectedDevice != null) {
+                        print(
+                            'Discovery -> selected ' + selectedDevice.address);
+                      } else {
+                        print('Discovery -> no device selected');
+                      }
+                    } else {
+                      var snackBar = SnackBar(
+                        content: Text(
+                          "Bluetooth Disabled",
+                          textAlign: TextAlign.center,
+                          style: GoogleFonts.galdeano(
+                              textStyle: TextStyle(
+                                  color: Color(0xffF20B0B),
+                                  fontSize: h * 0.025,
+                                  fontWeight: FontWeight.bold)),
+                        ),
+                        backgroundColor: Colors.white,
+                        duration: Duration(milliseconds: 1500),
+                      );
+                      scaffoldKey.currentState.showSnackBar(snackBar);
+                    }
+                  }),
+            ),
+            Container(
+              width: h * (0.38),
+              child: RaisedButton(
+                elevation: 7,
+                color: Color(0xffF20B0B),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(18.0),
+                ),
+                child: Text('Connect to paired chair',
+                    style: GoogleFonts.galdeano(
+                        textStyle: TextStyle(
+                            color: Colors.white,
+                            fontSize: h * 0.029,
+                            fontWeight: FontWeight.bold))),
+                onPressed: () async {
+                  if (_bluetoothState.isEnabled) {
                     final BluetoothDevice selectedDevice =
                         await Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (context) {
-                          return DiscoveryPage();
+                          return SelectBondedDevicePage(
+                              checkAvailability: false);
                         },
                       ),
                     );
 
                     if (selectedDevice != null) {
-                      print('Discovery -> selected ' + selectedDevice.address);
+                      print('Connect -> selected ' + selectedDevice.address);
+                      _startChat(context, selectedDevice);
                     } else {
-                      print('Discovery -> no device selected');
-                    } }
-                    else
-                      {
-                        var snackBar = SnackBar(
-                          content: Text("Bluetooth Disabled",
-                            textAlign: TextAlign.center,
-                            style: GoogleFonts.galdeano(
-                                textStyle: TextStyle(
-                                    color: Color(0xffF20B0B),
-                                    fontSize: h*0.025,
-                                    fontWeight: FontWeight.bold)),
-                          ),
-                          backgroundColor:Colors.white,
-                          duration: Duration(milliseconds: 1500),
-                        );
-                        scaffoldKey.currentState.showSnackBar(snackBar);
-                      }
-                  }),
-            ),
-            Container(
-              width: h*(0.38),
-              child: RaisedButton(
-                elevation: 7,
-                color:Color(0xffF20B0B) ,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(18.0),
-
-                ),
-                child: Text('Connect to paired chair',style: GoogleFonts.galdeano(
-                    textStyle: TextStyle(
-                      color: Colors.white,
-                      fontSize: h*0.029,
-                      fontWeight: FontWeight.bold
-                    ))),
-                onPressed: () async {
-                  if(_bluetoothState.isEnabled){
-                  final BluetoothDevice selectedDevice =
-                      await Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) {
-                        return SelectBondedDevicePage(checkAvailability: false);
-                      },
-                    ),
-                  );
-
-                  if (selectedDevice != null) {
-                    print('Connect -> selected ' + selectedDevice.address);
-                    _startChat(context, selectedDevice);
+                      print('Connect -> no device selected');
+                    }
                   } else {
-                    print('Connect -> no device selected');
-                  }}
-                  else{
                     var snackBar = SnackBar(
-                      content: Text("Bluetooth Disabled",
+                      content: Text(
+                        "Bluetooth Disabled",
                         textAlign: TextAlign.center,
                         style: GoogleFonts.galdeano(
                             textStyle: TextStyle(
                                 color: Color(0xffF20B0B),
-                                fontSize: h*0.025,
+                                fontSize: h * 0.025,
                                 fontWeight: FontWeight.bold)),
                       ),
-                      backgroundColor:Colors.white,
+                      backgroundColor: Colors.white,
                       duration: Duration(milliseconds: 1500),
                     );
                     scaffoldKey.currentState.showSnackBar(snackBar);
@@ -412,14 +423,12 @@ class _MainPage extends State<MainPage> {
   }
 
   void _startChat(BuildContext context, BluetoothDevice server) {
-
-      Navigator.of(context).push(
-        MaterialPageRoute(
-          builder: (context) {
-            return joypad(server: server);
-          },
-        ),
-      );
-
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) {
+          return joypad(server: server);
+        },
+      ),
+    );
   }
 }

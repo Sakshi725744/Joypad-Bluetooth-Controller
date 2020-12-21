@@ -28,18 +28,18 @@ class AuthService {
     return StreamBuilder<User>(
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (BuildContext context, snapshot) {
-          if (snapshot.hasData) {
+          if (snapshot.hasData) {//whether logged in or not
             return FutureBuilder(
               future: checkIfDocExists(FirebaseAuth.instance.currentUser.phoneNumber),
               builder: (context, snapshot) {
                 if(snapshot.connectionState==ConnectionState.done)
-                  if (snapshot.data==true) {
+                  if (snapshot.data==true) { //where phone number document exists to check profile info
                       return MainPage();
                     } else {
                       return profile();
                     }
                 else{
-                return splash();}
+                return splash();}//poor connection
               },
             );
                 return MainPage();

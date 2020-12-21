@@ -20,6 +20,7 @@ class MainScreen extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(accentColor: Color(0xfff20b0b)),
       home: AuthService().handleAuth(),
+      //MobileAuth directory
     );
   }
 }
