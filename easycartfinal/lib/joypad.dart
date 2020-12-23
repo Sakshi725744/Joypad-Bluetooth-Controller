@@ -26,7 +26,31 @@ class _joypadState extends State<joypad> {
 
   bool isDisconnecting = false;
   bool joypadview = false; //for padbutton or joypad
+  showAlertDialog(BuildContext context, String error,String title) {
 
+    // set up the button
+    Widget okButton = FlatButton(
+      child: Text("OK"),
+      onPressed: () {Navigator.of(context).pop();},
+    );
+
+    // set up the AlertDialog
+    AlertDialog alert = AlertDialog(
+      title: Text(title,style: TextStyle(color: Color(0xfff20b0b)),),
+      content: Text(error),
+      actions: [
+        okButton,
+      ],
+    );
+
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
+  }
   @override
   void initState() {
     super.initState();
@@ -151,17 +175,21 @@ class _joypadState extends State<joypad> {
         print(e.toString());
       }
     } else {
-      BluetoothConnection.toAddress(widget.server.address).then((_connection) {//trying to reconnect
-        print('Connected to the device');
-        connection = _connection;
-        setState(() {
-          isConnecting = false;
-          isDisconnecting = false;
+      Future.delayed(const Duration(milliseconds: 200), () {
+
+        BluetoothConnection.toAddress(widget.server.address).then((_connection) {//trying to reconnect
+          print('Connected to the device');
+          connection = _connection;
+          setState(() {
+            isConnecting = false;
+            isDisconnecting = false;
+          });
+        }).catchError((error) {
+          print('Cannot connect, exception occured');
+          showAlertDialog(context, error, "Connection Error!");
+
         });
-      }).catchError((error) {
-        print('Cannot connect, exception occured');
-        print(error);
-        Navigator.of(context).pop();
+
 
       });
     }
@@ -177,17 +205,21 @@ class _joypadState extends State<joypad> {
         print(e.toString());
       }
     } else {
-      BluetoothConnection.toAddress(widget.server.address).then((_connection) {//trying to reconnect
-        print('Connected to the device');
-        connection = _connection;
-        setState(() {
-          isConnecting = false;
-          isDisconnecting = false;
-        });
-      }).catchError((error) {
-        print('Cannot connect, exception occured');
-        print(error);
-        Navigator.of(context).pop();
+      Future.delayed(const Duration(milliseconds: 200), () {
+
+        BluetoothConnection.toAddress(widget.server.address).then((_connection) {//trying to reconnect
+          print('Connected to the device');
+          connection = _connection;
+          setState(() {
+            isConnecting = false;
+            isDisconnecting = false;
+          });
+        }).catchError((error) {
+          print('Cannot connect, exception occured');
+          showAlertDialog(context, error, "Connection Error!");
+
+      });
+
 
       });
     }
