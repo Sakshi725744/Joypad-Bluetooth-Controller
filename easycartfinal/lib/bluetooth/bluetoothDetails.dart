@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'package:easycartfinal/MobileAuth/Authservice.dart';
 import 'package:easycartfinal/easycart_heading.dart';
-import 'package:easycartfinal/receive.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
@@ -12,6 +11,7 @@ import 'DiscoveryPage.dart';
 import 'SelectBondedDevicePage.dart';
 import '../joypad.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class MainPage extends StatefulWidget {
   @override
@@ -346,20 +346,15 @@ class _MainPage extends State<MainPage> {
                         print('Discovery -> no device selected');
                       }
                     } else {
-                      var snackBar = SnackBar(
-                        content: Text(
-                          "Bluetooth Disabled",
-                          textAlign: TextAlign.center,
-                          style: GoogleFonts.galdeano(
-                              textStyle: TextStyle(
-                                  color: Color(0xffF20B0B),
-                                  fontSize: h * 0.025,
-                                  fontWeight: FontWeight.bold)),
-                        ),
-                        backgroundColor: Colors.white,
-                        duration: Duration(milliseconds: 1500),
+                      Fluttertoast.showToast(
+                          msg: "Bluetooth Disabled!",
+                          toastLength: Toast.LENGTH_SHORT,
+                          gravity: ToastGravity.BOTTOM,
+                          timeInSecForIosWeb: 1,
+                          backgroundColor: Colors.white,
+                          textColor:  Color(0xffF20B0B),
+                          fontSize: 16.0
                       );
-                      scaffoldKey.currentState.showSnackBar(snackBar);
                     }
                   }),
             ),
@@ -396,20 +391,15 @@ class _MainPage extends State<MainPage> {
                       print('Connect -> no device selected');
                     }
                   } else {
-                    var snackBar = SnackBar(
-                      content: Text(
-                        "Bluetooth Disabled",
-                        textAlign: TextAlign.center,
-                        style: GoogleFonts.galdeano(
-                            textStyle: TextStyle(
-                                color: Color(0xffF20B0B),
-                                fontSize: h * 0.025,
-                                fontWeight: FontWeight.bold)),
-                      ),
-                      backgroundColor: Colors.white,
-                      duration: Duration(milliseconds: 1500),
+                    Fluttertoast.showToast(
+                        msg: "Bluetooth Disabled!",
+                        toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.BOTTOM,
+                        timeInSecForIosWeb: 1,
+                        backgroundColor: Colors.white,
+                        textColor:  Color(0xffF20B0B),
+                        fontSize: 16.0
                     );
-                    scaffoldKey.currentState.showSnackBar(snackBar);
                   }
                 },
               ),
